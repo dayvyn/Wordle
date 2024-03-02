@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class Display : MonoBehaviour
 {
     [SerializeField] TMP_InputField[] letterBoxes;
     Logic logical;
     int choice;
-    public string guess;
+    string guess;
     bool lastFilled = false;
    void Start()
     {
@@ -157,5 +158,12 @@ public class Display : MonoBehaviour
                     return null;
             }
         }
-       
+    public void ChangeToGreen(int pos)
+    {
+        letterBoxes[pos].GetComponent<Image>().color = Color.green;
+    }
+    public void ChangeToYellow(int pos)
+    {
+        letterBoxes[pos].GetComponent<Image>().color = Color.yellow;
+    }
 }
