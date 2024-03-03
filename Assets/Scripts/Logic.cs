@@ -9,7 +9,7 @@ public class Logic : MonoBehaviour
     [SerializeField] Button[] alphabetBoxes;
     Display displayScript;
     int row;
-    public string answer;
+    string answer;
     string guessedWord;
     char[] letterArray;
     char[] answerArray;
