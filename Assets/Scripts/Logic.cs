@@ -118,7 +118,7 @@ public class Logic : MonoBehaviour
                 //Then give the rest to the Old dead gods
                 for (int h = 0; h < letterArray.Length; h++)
                 {
-                    if (!answer.Contains(letterArray[h]))
+                    if (!answer.Contains(letterArray[h]) || answer.Contains(letterArray[h]) && letterCounter[letterArray[h]] == letterFrequency[letterArray[h]])
                     {
                         displayScript.ChangeToGrey(inputBoxes[GetRow(), h]);
                     }

@@ -176,7 +176,11 @@ public class Display : MonoBehaviour
     }
     public void ChangeToGrey(int pos)
     {
-        letterBoxes[pos].GetComponent<Image>().color = Color.grey;
+        if(letterBoxes[pos].GetComponent<Image>().color != Color.green && letterBoxes[pos].GetComponent<Image>().color != Color.yellow)
+        {
+            letterBoxes[pos].GetComponent<Image>().color = Color.grey;
+        }
+        
     }
     public void ChangeDisplay(bool correct)
     {
