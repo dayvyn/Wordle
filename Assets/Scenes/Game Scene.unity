@@ -14842,7 +14842,6 @@ MonoBehaviour:
   - {fileID: 306985161}
   - {fileID: 921536771}
   - {fileID: 353018077}
-  guess: 
 --- !u!4 &1422450183
 Transform:
   m_ObjectHideFlags: 0
@@ -14871,8 +14870,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alphabetBoxes: []
-  row: 0
-  guessedWord: 
+  answer: 
+  allowedWordsFile: {fileID: 4900000, guid: 322c768e566c41d4888d77b2c777bc70, type: 3}
+  possibleWordsFile: {fileID: 4900000, guid: 20856d3e01603ae47b26883b2c32c369, type: 3}
+  allowedWords: []
+  possiblewords: []
 --- !u!1 &1425014149
 GameObject:
   m_ObjectHideFlags: 0

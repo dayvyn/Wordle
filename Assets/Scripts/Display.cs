@@ -10,11 +10,15 @@ public class Display : MonoBehaviour
     int choice;
     string guess;
     bool lastFilled = false;
+    public GameObject[] gamePanels;
+    public GameObject endPanel;
+    [SerializeField] TMP_Text verdict;
    void Start()
     {
         choice = 0; 
         logical = GetComponent<Logic>();
     }
+    //Pushes name of Button to the text of the InputField
     public void DisplayLetter(string name)
     {
        if (letterBoxes[choice].GetComponent<TMP_InputField>().text == "")
@@ -27,6 +31,8 @@ public class Display : MonoBehaviour
            letterBoxes[choice].GetComponent<TMP_InputField>().text = name;
        }
     }
+    //choice cannot go past the row until SetFilledGox() allows it
+    //There is a much better way to do this, I'm sure, but it works
     int GetBoxOfChoice()
     {
         switch (logical.GetRow())
@@ -94,6 +100,7 @@ public class Display : MonoBehaviour
         lastFilled = false;
         choice++;
     }
+    //There is a better way of doing this, but I'm not sure exactly. Using modulo seems like a good alternative since its adding 5 each time, but I'm unsure how to do it with an initial offset of 4
     public void RemoveLetter()
     {
         if (choice % 5 == 0)
@@ -115,6 +122,7 @@ public class Display : MonoBehaviour
         }
     }
 
+    //Forming the word from getting the text from each InputField
     public string FormWord()
     {
             switch (logical.GetRow())
@@ -165,5 +173,36 @@ public class Display : MonoBehaviour
     public void ChangeToYellow(int pos)
     {
         letterBoxes[pos].GetComponent<Image>().color = Color.yellow;
+    }
+    public void ChangeToGrey(int pos)
+    {
+        letterBoxes[pos].GetComponent<Image>().color = Color.grey;
+    }
+    public void ChangeDisplay(bool correct)
+    {
+       StartCoroutine(DisplayChange(correct));
+    } 
+    IEnumerator DisplayChange(bool correct)
+    {
+        //Can't keep spamming buttons after you're finished
+        foreach (Button letter in logical.GetAlphabetBoxes())
+        {
+            letter.interactable = false;
+        }
+        yield return new WaitForSeconds(1);
+        foreach (GameObject panel in gamePanels)
+        {
+            panel.SetActive(false);
+        }
+        endPanel.SetActive(true);
+        if (correct)
+        {
+            verdict.text = "Congratulations!\nYour answer\n was:\n" + logical.GetAnswer();
+        }
+        else
+        {
+            verdict.text = "Sorry...\nYour answer\n was:\n" + logical.GetAnswer();
+        }
+
     }
 }

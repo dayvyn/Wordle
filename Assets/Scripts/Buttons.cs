@@ -13,19 +13,10 @@ public class Buttons : MonoBehaviour
         SetButtonName();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //Setting Button Names to use for creation of words
     void SetButtonName()
     {
         gameObject.name = GetComponent<Button>().GetComponentInChildren<TMP_Text>().text;
         buttonName = gameObject.name;
-    }
-    public string GetButtonName()
-    {
-        return buttonName;
     }
 }
